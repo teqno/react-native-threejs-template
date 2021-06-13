@@ -2,7 +2,6 @@ import { ExpoWebGLRenderingContext, GLView } from "expo-gl";
 import { Renderer, TextureLoader } from "expo-three";
 import React, { useEffect } from "react";
 import {
-  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -10,7 +9,6 @@ import {
   View,
 } from "react-native";
 import * as THREE from "three";
-import { ObjectLoader } from "three";
 
 const textureFile =
   "https://threejsfundamentals.org/threejs/resources/images/star.png";
@@ -118,10 +116,6 @@ const Game: React.FC<OwnProps> = ({ isRunning }) => {
   };
 
   const onGLContextCreate = async (gl: ExpoWebGLRenderingContext) => {
-    // 1. Scene
-    // L17
-
-    // 2. Camera
     const camera = new THREE.PerspectiveCamera(
       75,
       gl.drawingBufferWidth / gl.drawingBufferHeight,
@@ -129,7 +123,6 @@ const Game: React.FC<OwnProps> = ({ isRunning }) => {
       1000
     );
 
-    // 3. Renderer
     const renderer = new Renderer({ gl });
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
 
@@ -245,7 +238,7 @@ const Game: React.FC<OwnProps> = ({ isRunning }) => {
             onPressOut={handleRightButtonRelease}
             style={classes.controlButton}
           >
-            <Text style={styles({}).controlButtonText}>Right</Text>
+            <Text style={classes.controlButtonText}>Right</Text>
           </Pressable>
         </View>
       )}
